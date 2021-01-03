@@ -1,25 +1,21 @@
 declarations:
   name: 'trend'  
   variables: [y,ppi,i, ybar, pibar, ibar, v, vtilde, ylag, xi, istar, ystar]
-  parameters: [rA, piA, yQ, rho, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, gamma, gammatilde, phipiLR, phiyLR, rhopibar, rhoibar, rhoybar, sigibar, sigybar, sigpibar]
+  parameters: [rA, piA, yQ, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, rhopibar, rhoibar, rhoybar, sigibar, sigybar, sigpibar]
   observables: [ygr, infl, int]
   shocks: [epsxi, epsi, epsy, epsybar, epspibar, epsibar]
 
 equations:
   model:
     # Euler Equation
-    - y - xi - ybar = rho*(y(+1) - xi(+1) - ybar(+1)) - sigma*(i - ibar - rho*(ppi(+1) - pibar(+1)))
+    - y - xi - ybar = (y(+1) - xi(+1) - ybar(+1)) - sigma*(i - ibar - (ppi(+1) - pibar(+1)))
 
     # Phillips Curve
-    - ppi - pibar = 1/(1+rA/400)*rho*(ppi(+1) - pibar(+1)) + kappa*(y - ystar - ybar)
+    - ppi - pibar = 1/(1+rA/400)*(ppi(+1) - pibar(+1)) + kappa*(y - ystar - ybar)
 
     # Monetary Policy
     - i - ibar = istar + phipi*(ppi - pibar) + phiy*(y - ybar)
 
-
-    # Value functions
-    - v = (1.0-gamma)*v(-1) + gamma*(y(-1) - xi(-1) + sigma*ppi(-1))
-    - vtilde = (1- gammatilde)*vtilde(-1) + gammatilde * ppi(-1) / (1-alpha)
 
     # Latent States
     - ybar = rhoybar*ybar(-1) + epsybar;
@@ -49,11 +45,8 @@ calibration:
     beta: 0.99
     kappa: 0.01
     alpha: 0.75
-    rho: 1.0
     phipi: 1.5
     phiy: 0.25
-    gamma: 0.1
-    gammatilde: 0.1
     sigxi: 1.0
     sigy: 1.0
     sigi: 1.0
@@ -63,8 +56,6 @@ calibration:
     rA: 2
     piA: 2
     yQ: 0.5
-    phipiLR: 1.5
-    phiyLR: 0.25
     sigybar: 0.02
     sigibar: 0.02
     sigpibar: 0.02
@@ -93,9 +84,6 @@ estimation:
     rA: [gamma, 2.00, 1.0]
     piA: [normal, 4, 1]
     yQ: [normal, 0.5, 0.1]
-    rho: [uniform, 0, 1]
-    gamma: [uniform, 0, 1]
-    gammatilde: [uniform, 0, 1] 
     kappa: [gamma, 0.05, 0.1]
     phipi: [gamma, 1.50, 0.25]
     phiy: [gamma, 0.25, 0.25]
@@ -111,5 +99,5 @@ estimation:
     rhoxi: [uniform, 0, 1]
     rhoy: [uniform, 0, 1]
     rhoi: [uniform, 0, 1]
-    phipiLR: [gamma, 1.50, 0.25]
-    phiyLR: [gamma, 0.25, 0.25]
+
+

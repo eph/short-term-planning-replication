@@ -1,5 +1,5 @@
 declarations:
-  name: 'woodford'
+  name: 'finite_horizon'
   variables: [y,ppi,i, ybar, pibar, ibar, v, vtilde, ylag, xi, istar, ystar]
   parameters: [rA, piA, yQ, rho, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, gamma, gammatilde, phipiLR, phiyLR]
   observables: [ygr, infl, int]
