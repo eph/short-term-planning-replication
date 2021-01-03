@@ -1,0 +1,66 @@
+declarations:
+  name: 'woodford_lam'
+  variables: [y,ppi,i, ylag, xi, istar, ystar]
+  parameters: [rA, piA, yQ, nu, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, a, lampi,phipiLR, phiyLR]
+  shocks: [epsxi, epsi, epsy]
+
+
+equations:
+  model:
+    # Euler Equation
+    - (1+2*nu)*y  = nu*y(-1) + (1+nu)*y(+1) - sigma*(i - lampi*ppi(+1)) + (1+nu)*(1-rhoxi)*xi
+
+    # Phillips Curve
+    - (1.0+1.0/(1.0+rA/400)*(1-a))*ppi  = (1-a)*ppi(-1) + 1.0/(1.0+rA/400)*ppi(+1) + kappa*(y*(1+nu) - nu*y(-1)) - kappa*ystar
+
+    # Monetary Policy
+    - i = istar + phipi*ppi + phiy*(y)
+
+    - ylag = y(-1)
+
+    - xi = rhoxi*xi(-1) + epsxi
+    - istar = rhoi*istar(-1) + epsi
+    - ystar = rhoy*ystar(-1) + epsy
+
+  observables:
+    # Output growth
+    ygr : yQ + y - ylag 
+
+    # Observed inflation
+    infl : piA + 4.0*ppi
+
+    # Observed Interest Rate
+    int : piA + rA + 4.0*i
+
+
+calibration:
+  parameters:
+    sigma: 1.0
+    beta: 0.99
+    kappa: 0.01
+    alpha: 0.75
+    nu: 0.7
+    phipi: 1.5
+    phiy: 0.25
+    a: 0.1
+    sigxi: 1.0
+    sigy: 1.0
+    sigi: 1.0
+    rhoxi: 0.85
+    rhoy: 0.85
+    rhoi: 0.85
+    rA: 2
+    piA: 2
+    yQ: 0.5
+    phipiLR: 1.5
+    phiyLR: 0.25
+    lampi: 1.0
+
+
+  covariances:
+    epsxi: sigxi^2
+    epsi: sigi^2
+    epsy: sigy^2
+
+estimation:
+  nothing:
