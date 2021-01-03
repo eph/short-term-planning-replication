@@ -4,7 +4,7 @@
 
 The code in this replication package estimates the models and
 constructs the figures and table from Gust, Herbst, and Lopez-Salido
-(AEJ: Macro, 2021) using Fortran and Python.  
+(AEJ: Macro, 202x) using Fortran and Python.  
 
 ** Data
 *** Data Availability and Provenance Statements
@@ -25,7 +25,7 @@ The code is licensed under a Creative Commons/CC-BY-NC/CC0 license. See [LICENSE
 
 *** Summary of Availability
 
-- [ ] All data **are** publicly available.
+- [X] All data **are** publicly available.
 - [ ] Some data **cannot be made** publicly available.
 - [ ] **No data can be made** publicly available.
 
