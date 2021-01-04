@@ -14,8 +14,11 @@ plt.matplotlib.rcParams["font.sans-serif"] = "Fira Code"
 plt.matplotlib.rcParams["text.usetex"] = True
 
 
-data = {"xgap": np.loadtxt("data/xgap.txt"), "USRECQ": np.loadtxt("data/usrec.txt")}
-data = p.DataFrame(data, index=p.period_range("1966", "2007Q4", freq="Q"))
+data = {"xgap": np.loadtxt("data/xgap.txt"),
+        "USRECQ": np.loadtxt("data/usrec.txt")}
+
+data = p.DataFrame(data,
+                   index=p.period_range("1966", "2007Q4", freq="Q"))
 
 latex = {
     "rA": r"$r^A$",
@@ -67,6 +70,7 @@ def add_rec_bars(ax):
     )
     ax.set_ylim(ylims)
     return ax
+
 
 @contextmanager
 def saved_figure(fname, **kwds):

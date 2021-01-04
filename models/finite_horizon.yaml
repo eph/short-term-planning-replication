@@ -16,7 +16,6 @@ equations:
 
     # Monetary Policy
     - i - ibar = istar + phipi*(ppi - pibar) + phiy*(y - ybar)
-    #- i  = istar + phipi*(ppi ) + phiy*(y )
 
     # Value functions
     - v = (1.0-gamma)*v(-1) + gamma*(y(-1) - xi(-1) + sigma*ppi(-1))

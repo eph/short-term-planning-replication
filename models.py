@@ -32,6 +32,8 @@ class ModelAttributes(object):
         self.model = DSGE.read(self.yaml_file)
         fix_parameters(self.model, **self.fixed_parameters)
 
+    def linear_model(self):
+        return self.model.compile_model()
 
     def create_fortran_model(self, smc_file=None):
         if smc_file is None:                                 
