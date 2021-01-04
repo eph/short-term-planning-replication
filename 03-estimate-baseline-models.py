@@ -1,5 +1,4 @@
-import numpy as np
+from models import finite_horizon
 
-from dsge.examples import nkmp
-
-nkmplin = nkmp.compile_model()
+finite_horizon.load()
+finite_horizon.estimate(seed=1,pe=20000)

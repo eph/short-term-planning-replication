@@ -1,4 +1,4 @@
-from fortress import make_smc
+from fortress import make_smc, SMCDriver
 from dsge.translate import smc, write_prior_file
 from dsge.symbols import Parameter
 from dsge.DSGE import DSGE
@@ -42,6 +42,10 @@ class ModelAttributes(object):
         make_smc(smc_file, other_files=other_files,          
                  output_directory=self.fortran_directory)                      
         write_prior_file(model_linear.prior, self.fortran_directory)           
+
+    def estimate(self, **kwargs):
+        smc = SMCDriver('./' + self.fortran_directory + '/smc')
+        smc.run(**kwargs)
 
 
 canonical_NK = ModelAttributes(

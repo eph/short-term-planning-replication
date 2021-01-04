@@ -1,7 +1,5 @@
 #+TITLE: Replication Material For "Short-term Planning, Monetary Policy, and Macroeconomic Persistence"
 
-
-
 The code in this replication package estimates the models and
 constructs the figures and table from Gust, Herbst, and Lopez-Salido
 (AEJ: Macro, 202x) using Fortran and Python.  
@@ -13,7 +11,7 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 
 *** Statement about Rights
 
-- [ ] We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
+    We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
 
 
 *** License for Data
@@ -29,17 +27,6 @@ The code is licensed under a Creative Commons/CC-BY-NC/CC0 license. See [LICENSE
 - [ ] Some data **cannot be made** publicly available.
 - [ ] **No data can be made** publicly available.
 
-### Details on each Data Source
-
-> INSTRUCTIONS: For each data source, list the file that contains data from that source here; if providing combined/derived datafiles, list them separately after the DAS. For each data source or file, as appropriate, 
-> 
-> - Describe the format (open formats preferred, but some software-specific formats OK if open-source readers available): `.dta`, `.xlsx`, `.csv`, `netCDF`, etc.
-> - Provide a data dictionairy, either as part of the archive (list the file name), or at a URL (list the URL). Some formats are self-describing *if* they have the requisite information (e.g., `.dta` should have both variable and value labels).
-
-
-### Example for public use data collected by the authors
-
-> The [DATA TYPE] data used to support the findings of this study have been deposited in the [NAME] repository ([DOI or OTHER PERSISTENT IDENTIFIER]). [[1](https://www.hindawi.com/research.data/#statement.templates)]. The data were collected by the authors, and are available under a Creative Commons Non-commercial license.
 
 *** Data Used in Estimation
 
