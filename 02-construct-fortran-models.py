@@ -1,5 +1,6 @@
 from models import (
     canonical_NK,
+    trends,
     finite_horizon,
     finite_horizon_gamma,
     finite_horizon_phibar,
@@ -9,6 +10,7 @@ from models import (
 
 for model in [
     canonical_NK,
+    trends,
     finite_horizon,
     finite_horizon_gamma,
     finite_horizon_phibar,

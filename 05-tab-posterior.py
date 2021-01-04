@@ -1,31 +1,31 @@
-import numpy as np
-import pandas as p
 from models import (
     canonical_NK,
+    trends,
     finite_horizon,
     finite_horizon_gamma,
     finite_horizon_phibar,
 )
-from fortress import load_estimates
+from figures import latex
 
-import warnings
+import numpy as np
+import pandas as p
 
-warnings.simplefilter(action="ignore", category=FutureWarning)
-
+model_list = [
+    canonical_NK,
+    #trends,
+    finite_horizon,
+    finite_horizon_gamma,
+    finite_horizon_phibar
+]
 
 results = []
-
-
 np.random.seed(1848)
-for (path, model, name) in models:
-    paranames = [str(para) for para in model.parameters]
-    results_model = load_estimates(
-        "_fortress_" + path + "/output-*", paranames=paranames
-    )
+for model in model_list:
+    model.load()
+    results_model = model.load_estimates()
     results.append(results_model)
 
-results = p.concat(results, keys=[m[-1] for m in models])
-
+results = p.concat(results, keys=[m.name for m in model_list])
 
 all_parameters = [
     "rA",
@@ -60,7 +60,7 @@ tbl = (
     .reindex(all_parameters)
     .rename(index=latex)
     .dropna(how="all")
-    .xs([m[-1] for m in models], axis=1)
+    .xs([m.name for m in model_list], axis=1)
     .round(2)
     .rename(columns={"mean": "Mean", "std": "SD"}, level=1)
     .to_latex(na_rep="", escape=False, multicolumn_format="c")
