@@ -104,12 +104,34 @@ The code is licensed under a MIT/BSD/GPL/Creative Commons license. See [LICENSE.
 
 *** Instructions to Replicators
 
-> INSTRUCTIONS: The first two sections ensure that the data and software necessary to conduct the replication have been collected. This section then describes a human-readable instruction to conduct the replication. This may be simple, or may involve many complicated steps. It should be a simple list, no excess prose. Strict linear sequence. If more than 4-5 manual steps, please wrap a master program/Makefile around them, in logical sequences. Examples follow.
+  1. Install [[https://docs.conda.io/en/latest/][Conda]].
+  2. From a shell prompt, create the necessary python environment, using:
+     #+begin_src sh
+     user@computer:short-term-planning-replication$ conda env create --file env.yaml
+     #+end_src 
+  3. Activate the environment with:
+     #+begin_src sh
+     user@computer:short-term-planning-replication$ source activate short-term-planning-replication
+     #+end_src 
+  4. /(Optional.)/ Download the data from FRED:
+     #+begin_src sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ python 01-construct-estimation-data.py
+     #+end_src      
+  5. Create the fortran models with:
+     #+begin_src sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ python 02-construct-fortran-models.py
+     #+end_src      
+  6. Estimate all the models with: 
+     #+begin_src sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./estimate-all-models.sh
+     #+end_src      
+     /Note/: this can take quite a long time! See the details below to for how to estimate individual models.
+  7. Construct the tables and figures.
+     #+begin_src sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./construct-all-tables-and-figures.sh
+     #+end_src           
+     /Note/: this can take quite a long time! See the details below to for how to create individual tables and figures.  
 
-- Edit `programs/config.do` to adjust the default path
-- Run `programs/00_setup.do` once on a new system to set up the working environment. 
-- Download the data files referenced above. Each should be stored in the prepared subdirectories of `data/`, in the format that you download them in. Do not unzip. Scripts are provided in each directory to download the public-use files. Confidential data files requested as part of your FSRDC project will appear in the `/data` folder. No further action is needed on the replicator's part.
-- Run `programs/01_master.do` to run all steps in sequence.
 
 **** Details
 
@@ -142,15 +164,22 @@ The provided code reproduces:
 - [ ] All tables and figures in the paper
 - [ ] Selected tables and figures in the paper, as explained and justified below.
 
+|----------------+---------+-------------+------+---|
+| Figure/Table # | Program | Output File | Note |   |
+|----------------+---------+-------------+------+---|
+| Figure 1       | 04      |             |      |   |
+|----------------+---------+-------------+------+---|
 
-| Figure/Table #    | Program                  | Line Number | Output file                      | Note                            |
-|-------------------|--------------------------|-------------|----------------------------------|---------------------------------|
-| Table 1           | 02_analysis/table1.do    |             | summarystats.csv                 ||
-| Table 2           | 02_analysis/table2and3.do| 15          | table2.csv                       ||
-| Table 3           | 02_analysis/table2and3.do| 145         | table3.csv                       ||
-| Figure 1          | n.a. (no data)           |             |                                  | Source: Herodus (2011)          |
-| Figure 2          | 02_analysis/fig2.do      |             | figure2.png                      ||
-| Figure 3          | 02_analysis/fig3.do      |             | figure-robustness.png            | Requires confidential data      |
+
+|                |                           |             |                       |                            |
+| Figure/Table # | Program                   | Line Number | Output file           | Note                       |
+|----------------+---------------------------+-------------+-----------------------+----------------------------|
+| Table 1        | 02_analysis/table1.do     |             | summarystats.csv      |                            |
+| Table 2        | 02_analysis/table2and3.do |          15 | table2.csv            |                            |
+| Table 3        | 02_analysis/table2and3.do |         145 | table3.csv            |                            |
+| Figure 1       | n.a. (no data)            |             |                       | Source: Herodus (2011)     |
+| Figure 2       | 02_analysis/fig2.do       |             | figure2.png           |                            |
+| Figure 3       | 02_analysis/fig3.do       |             | figure-robustness.png | Requires confidential data |
 
 ** References
 
