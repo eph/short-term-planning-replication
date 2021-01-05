@@ -112,20 +112,20 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
      #+end_src 
   4. /(Optional.)/ Download the data from FRED:
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ python 01-construct-estimation-data.py
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ python scripts/01-construct-estimation-data.py
      #+end_src      
   5. Create the fortran models with:
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ python 02-construct-fortran-models.py
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ python scripts/02-construct-fortran-models.py
      #+end_src      
   6. Estimate all the models with: 
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./estimate-all-models.sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/estimate-all-models.sh
      #+end_src      
      /Note/: this can take quite a long time! See the details below to for how to estimate individual models.
   7. Construct the tables and figures.
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./construct-all-tables-and-figures.sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/construct-all-tables-and-figures.sh
      #+end_src           
      /Note/: this can take quite a long time! See the details below to for how to create individual tables and figures.  
 

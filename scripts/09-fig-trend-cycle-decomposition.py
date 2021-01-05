@@ -1,6 +1,7 @@
 from models import finite_horizon_phibar
 from figures import saved_figure, add_rec_bars, data
 
+import numpy as np
 import pandas as p 
 
 finite_horizon_phibar.load()
