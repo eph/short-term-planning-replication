@@ -68,25 +68,26 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 
 *** Memory and Runtime Requirements
 
-**** Summary
+    The replication material involves roughly 500 estimations of a
+    Bayesian DSGE models via sequential Monte Carlo.  On a standard
+    desktop computer, this will take about *two weeks*.  
 
-Approximate time needed to reproduce the analyses on a standard (2020) desktop machine:
-
-- [ ] <10 minutes
-- [ ] 10-60 minutes
-- [ ] 1-8 hours
-- [ ] 8-24 hours
-- [ ] 1-3 days
-- [X] 3-14 days
-- [ ] > 14 days
-- [ ] Not feasible to run on a desktop machine, as described below.
-
-**** Details
-
-Portions of the code were last run on a **32-core Intel server with 1024 GB of RAM, 12 TB of fast local storage**. Computation took 734 hours. 
+    /Note/: The authors ran these estimations simulatenously on a 2000 CPU
+    cluster.
 
 **** Description of code
-     
+
+     The code is structured as follows.  Each of the
+     ~NN-some-python-script.py~ contains a script to download data,
+     construct a model, estimate model, or make a figure or table.  
+
+     There are two additional python files.  
+     - ~model.py~: This file contains a thin object
+       (=ModelAttributes=) for holding a given model, in addition to
+       details about important characteristics (its name, estimation
+       details, et cetera).  Below this definition, each model is
+       instantiated.
+     - ~figures.py~: This file contains plotting settings and contexts. 
 
 *** License for Code
 
@@ -135,7 +136,7 @@ the numerical standard error associated with the sequential Monte
 Carlo algorithm. 
 
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
-| Figure/Table # | Program                                       | Line Number | Output File                           |
+| Figure/Table # | Program                                       | Line Number | Output File*                          |
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
 | Figure 1       | 04-fig-impulse-response-disinflation-shock.py |             | disinflation_shock.pdf                |
 | Table 3        | 05-tab-posterior.py                           |             | main-posterior-table.tex              |
@@ -147,8 +148,10 @@ Carlo algorithm.
 | Figure 7       | 11-fig-trend-cycle-decomposition.py           |          72 | woodford_terminal_y_level.pdf         |
 | Figure 8       | 12-fig-estimated-shocks.py                    |             |                                       |
 | Figure 9       |                                               |             | shock_decomposition.pdf               |
+| Table 4        | 12-tab-log-mdd-single-agents.py               |             | single-agent-table.tex                |
+| Table 5        | 13-tab-log-mdd-alternative-models.py          |             | other-nk-mdd-table.tex                |
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
-
+All output is in the directory ~figures-tables/~. 
 
 ** References
 
