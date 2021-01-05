@@ -13,7 +13,7 @@ finite_horizon_phibar.load()
 df_het = finite_horizon_phibar.load_estimates()
 k_results.append(df_het)
 results_k = p.concat(k_results, 
-                     keys=[model.name for model in single_agent_models]+[r'FH-$\bar\phi$ Het. Agent'])
+                     keys=[model.name for model in single_agent_models]+[r'FHP-$\bar\phi$ Het. Agent'])
                                      
 mdd_table = results_k.groupby(level=[0,1]).mean().groupby(level=0).agg([np.mean, np.std]).round(2).logmdd.to_latex(escape=False)
      
