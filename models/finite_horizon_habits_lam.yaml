@@ -1,9 +1,9 @@
 declarations:
   name: 'woodford_lam'
   variables: [y,ppi,i, ylag, xi, istar, ystar]
-  parameters: [rA, piA, yQ, nu, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, a, lampi,phipiLR, phiyLR]
+  parameters: [rA, piA, yQ, nu, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, a, lampi]
   shocks: [epsxi, epsi, epsy]
-
+  observables: [ygr, infl, int]
 
 equations:
   model:
@@ -63,4 +63,26 @@ calibration:
     epsy: sigy^2
 
 estimation:
-  nothing:
+  data:
+    file: 'data/longsample.txt'
+    start: 1966Q1
+
+
+  prior:
+    alpha: [normal, 0.75, 0.05]
+    sigma: [gamma, 2.0, 0.5]
+    rA: [gamma, 2.00, 1.0]
+    piA: [normal, 4, 1]
+    yQ: [normal, 0.5, 0.1]
+    nu: [beta, 0.7, 0.15]
+    a: [uniform, 0, 1]
+    kappa: [gamma, 0.05, 0.1]
+    phipi: [gamma, 1.50, 0.25]
+    phiy: [gamma, 0.25, 0.25]
+    sigxi: [inv_gamma, 1, 4]
+    sigi: [inv_gamma, 1, 4]
+    sigy: [inv_gamma, 1, 4]
+    rhoxi: [uniform, 0, 1]
+    rhoy: [uniform, 0, 1]
+    rhoi: [uniform, 0, 1]
+    lampi: [uniform, 0, 1]

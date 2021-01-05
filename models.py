@@ -164,8 +164,8 @@ trends = ModelAttributes(
 
 
 angeletos_lian = ModelAttributes(
-    name=
-    yaml_file='finite_horizon_angeletos_lian.yaml',
+    name="Angeletos-Lian",
+    yaml_file='models/finite_horizon_angeletos_lian.yaml',
     fortran_directory='fortran/angeletos_lian',
     fixed_parameters={
         "alpha":0.75,
@@ -174,6 +174,25 @@ angeletos_lian = ModelAttributes(
     },
 )
     
+habits = ModelAttributes(
+    name="Hybrid NK",
+    yaml_file='models/finite_horizon_habits_lam.yaml',
+    fortran_directory='fortran/habits',
+    fixed_parameters={
+        "alpha":0.75,
+        "lampi":0.75
+    },
+)
+
+
+habits_lampi = ModelAttributes(
+    name=r"Hybrid NK-\(\lambda_\pi\)",
+    yaml_file='models/finite_horizon_habits_lam.yaml',
+    fortran_directory='fortran/habits_lampi',
+    fixed_parameters={
+        "alpha":0.75,
+    },
+)
 
 
 single_agent_template = open('single_agent_template.f90').read()

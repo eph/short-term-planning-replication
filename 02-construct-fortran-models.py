@@ -4,7 +4,6 @@ from models import (
     finite_horizon,
     finite_horizon_gamma,
     finite_horizon_phibar,
-    trends,
     angeletos_lian,
     habits,
     habits_lampi,
