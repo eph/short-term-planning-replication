@@ -5,31 +5,56 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 (AEJ: Macro, 202x) using Fortran and Python.  
 
 ** Data
+   
+   All of the data is publicly available. 
+   
 *** Data Availability and Provenance Statements
 
-> NOTE: DAS do not replace Data Citations (see [Guidance](Data_citation_guidance.md)). Rather, they augment them. Depending on journal requirements and to some extent stylistic considerations, data citations should appear in the main article, in an appendix, or in the README. However, data citations only provide information **where** to find the data, not **how to access** that data. Thus, DAS augment data citations by going into additional detail that allow a researcher to assess cost, complexity, and availability over time of the data used by the original author.
+    Here is a description of the data used in the estimation of the models.
+
+    1. *Real Gross Domestic Product.* This is part of National Income
+       and Product Accounts (NIPA), released by the Bureau of Economic
+       Analysis.  (FRED mnenomic ~GDPC1~.)
+
+    2. *Civilian Noninstitutional Population.* This is part of the
+       Employment Situation report, released by the Bureau of Labor
+       Statistics. (FRED mnenomic ~CNP16OV~.)
+
+    3. *GDP Deflator.* This is part of National Income
+       and Product Accounts (NIPA), released by the Bureau of Economic
+       Analysis.  (FRED mnenomic ~GDPDEF~.)
+
+    4. *Federal Funds Rate.* This is part of the H.15 Selected
+       Interest Rates report, released by the Board of Governors of
+       the Federal Reserve System.  (FRED mnenomic ~FEDFUNDS~.)
+
+       
+    Here is a description of additional data used in plotting. 
+
+    1. *Potential GDP.* This is part of the Budget and Economic
+       Outlook report, released by the Congressional Budget
+       Office. (FRED mnenomic ~GDPPOT~.)
+
+    2. *Recession Indicator.* This is part of the Recession Indicator
+       Series, released by the Federal Reserve Bank of St. Louis.
+       (FRED mnenomic ~USRECQ~.)
+
+    3. *Long-term Inflation Expectations.* This is part of the
+       historical FRB/US database, released by the Board of Governors
+       of the Federal Reserve System.  The data can be obtained 
+       [[https://www.federalreserve.gov/econres/us-models-package.htm][here]].  The variable name is ~PTR~. 
 
 *** Statement about Rights
 
-    We certify that the author(s) of the manuscript have legitimate access to and permission to use the data used in this manuscript. 
-
+    We certify that we have legitimate access to and permission to use
+    the data used in this manuscript.
 
 *** License for Data
 
-> INSTRUCTIONS: Most data repositories provide for a default license, but do not impose a specific license. Authors should actively select a license. This should be provided in a LICENSE.txt file, separately from the README, possibly combined with the license for any code. Some data may be subject to inherited license requirements, i.e., the data provider may allow for redistribution only if the data is licensed under specific rules - authors should check with their data providers. For instance, a data use license might require that users - the current author, but also any subsequent users - cite the data provider. Licensing can be complex. Some non-legal guidance may be found [here](https://social-science-data-editors.github.io/guidance/Licensing_guidance.html).
-
-The code is licensed under a Creative Commons/CC-BY-NC/CC0 license. See [LICENSE.txt](LICENSE.txt) for details.
-
-
-*** Summary of Availability
-
-- [X] All data **are** publicly available.
-- [ ] Some data **cannot be made** publicly available.
-- [ ] **No data can be made** publicly available.
-
-
-*** Data Used in Estimation
-
+    All the data except the "Recession Indicator" are from
+    U.S. government agencies are "works of the United States
+    government" under the Copyright Act.  As such, these data are
+    ineligible for copyright protection and in the public domain.
     
 
 ** Computation
