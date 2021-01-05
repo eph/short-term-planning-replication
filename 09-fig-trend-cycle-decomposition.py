@@ -32,7 +32,6 @@ q95 = filts.groupby(filts.index).quantile(0.95)
 mu = filts.groupby(filts.index).mean()
 index = q05.index.to_timestamp()
 
-
 with saved_figure('figures-tables/woodford_terminal_smooth_shaded.pdf', nrows=3) as (fig, ax):
     ax[0].fill_between(index, q05.pibarobs, q95.pibarobs, alpha=0.3)
     ax[0].plot(index, linear_model.yy.infl,color='black', alpha=0.8,linewidth=1)

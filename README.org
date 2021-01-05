@@ -90,7 +90,7 @@ Portions of the code were last run on a **32-core Intel server with 1024 GB of R
 
 *** License for Code
 
-    See LICENSE.txt 
+    Code written by the co-authors are each a "work of the United States government" under the Copyright Act.  As such, these codes are ineligible for copyright protection and in the public domain.
 
 ** Instructions to Replicators
 
@@ -134,19 +134,20 @@ replication can differ from the published version slightly because of
 the numerical standard error associated with the sequential Monte
 Carlo algorithm. 
 
-|----------------+---------------------------------------------------+-------------+-------------+------|
-| Figure/Table # | Program                                           | Line Number | Output File | Note |
-|----------------+---------------------------------------------------+-------------+-------------+------|
-| Figure 1       | 04-fig-impulse-response-disinflation-shock.py     |             |             |      |
-| Table 3        | 05-tab-posterior.py                               |             |             |      |
-| Figure 2       | 06-fig-joint-posterior.py                         |             |             |      |
-| Figure 3       | 07-fig-difference-log-mdd-time.py                 |             |             |      |
-| Figure 4       | 08-fig-impulse-response-monetary-shock.py         |             |             |      |
-| Figure 5       | 09-fig-trend-cycle-decomposition-inflation.py     |             |             |      |
-| Figure 6       | 10-fig-trend-cycle-decomposition-interest-rate.py |             |             |      |
-| Figure 7       | 11-fig-trend-cycle-decomposition-output.py        |             |             |      |
-| Figure 8       | 12-fig-estimated-shocks.py                        |             |             |      |
-|----------------+---------------------------------------------------+-------------+-------------+------|
+|----------------+-----------------------------------------------+-------------+---------------------------------------|
+| Figure/Table # | Program                                       | Line Number | Output File                           |
+|----------------+-----------------------------------------------+-------------+---------------------------------------|
+| Figure 1       | 04-fig-impulse-response-disinflation-shock.py |             | disinflation_shock.pdf                |
+| Table 3        | 05-tab-posterior.py                           |             | main-posterior-table.tex              |
+| Figure 2       | 06-fig-joint-posterior.py                     |             | rho_gamma_scatter.pdf                 |
+| Figure 3       | 07-fig-difference-log-mdd-time.py             |             |                                       |
+| Figure 4       | 08-fig-impulse-response-monetary-shock.py     |             | woodford_terminal_irf_epsi_shaded.pdf |
+| Figure 5       | 09-fig-trend-cycle-decomposition.py           |          35 | woodford_terminal_smooth_shaded.pdf   |
+| Figure 6       | 10-fig-trend-cycle-decomposition.py           |          59 | woodford_terminal_smooth_shaded_i.pdf |
+| Figure 7       | 11-fig-trend-cycle-decomposition.py           |          72 | woodford_terminal_y_level.pdf         |
+| Figure 8       | 12-fig-estimated-shocks.py                    |             |                                       |
+| Figure 9       |                                               |             | shock_decomposition.pdf               |
+|----------------+-----------------------------------------------+-------------+---------------------------------------|
 
 
 ** References
