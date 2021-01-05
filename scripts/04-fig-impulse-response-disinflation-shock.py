@@ -28,10 +28,10 @@ p0 = [2.39, #rA
       ]
 
 # Here we change the monetary policy rule to Taylor (1993)
-p0[7] = 1.5
-p0[8] = 0.125
-p0[15] = p0[7]
-p0[16] = p0[8]
+p0[6] = 1.5
+p0[7] = 0.125
+p0[15] = p0[6]
+p0[16] = p0[7]
 p0[12] = 0.9999
 p0[10] = 0.5/4  #shock size
 
@@ -119,9 +119,9 @@ with saved_figure('figures-tables/disinflation_shock.pdf',nrows=3, ncols=2) as (
     fh_large_gain_irf['ybar'].plot(ax=ax[2,0],linestyle='dashed',linewidth=3)
     ax[2,0].set_title(r'$\bar{y}_t$')
      
-    (4*fh_irf['pibar']).plot(ax=ax[2,1],linewidth=3,label='Estimated FH')
+    (4*fh_irf['pibar']).plot(ax=ax[2,1],linewidth=3,label='Estimated FHP')
     (4*np.nan*re_irf['pibar']).plot(ax=ax[2,1],linestyle='dotted',linewidth=3,label='Canonical NK')
-    (4*fh_large_gain_irf['pibar']).plot(ax=ax[2,1],linestyle='dashed',linewidth=3,label='FH with greater updating')
+    (4*fh_large_gain_irf['pibar']).plot(ax=ax[2,1],linestyle='dashed',linewidth=3,label='FHP with greater updating')
     ax[2,1].set_title(r'$\bar{\pi}^A_t$')
     ax[2,1].set_ylim(-1,0.1)
     fig.tight_layout()
