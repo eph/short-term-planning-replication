@@ -91,6 +91,10 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
      - ~single_agent_template.f90~: This file contains a fortran model
        template for the single agent models. 
 
+       
+     The ~models/~ directory contain the models in [[https://yaml.org][YAML]] format.  These
+     files are parse by the python package ~dsge~, referenced above. 
+
 *** License for Code
 
     Code written by the co-authors are each a "work of the United States government" under the Copyright Act.  As such, these codes are ineligible for copyright protection and in the public domain.
