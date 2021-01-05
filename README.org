@@ -81,13 +81,15 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
      ~NN-some-python-script.py~ contains a script to download data,
      construct a model, estimate model, or make a figure or table.  
 
-     There are two additional python files.  
+     There are two additional python files and an extra fortran files. 
      - ~model.py~: This file contains a thin object
        (=ModelAttributes=) for holding a given model, in addition to
        details about important characteristics (its name, estimation
        details, et cetera).  Below this definition, each model is
        instantiated.
-     - ~figures.py~: This file contains plotting settings and contexts. 
+     - ~figures.py~: This file contains plotting settings and contexts.
+     - ~single_agent_template.f90~: This file contains a fortran model
+       template for the single agent models. 
 
 *** License for Code
 
@@ -152,12 +154,5 @@ Carlo algorithm.
 | Table 5        | 13-tab-log-mdd-alternative-models.py          |             | other-nk-mdd-table.tex                |
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
 All output is in the directory ~figures-tables/~. 
-
-** References
-
-
-
-
-** Acknowledgements
 
 
