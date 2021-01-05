@@ -1,6 +1,6 @@
 declarations:
   name: 'trend'  
-  variables: [y,ppi,i, ybar, pibar, ibar, v, vtilde, ylag, xi, istar, ystar]
+  variables: [y,ppi,i, ybar, pibar, ibar, ylag, xi, istar, ystar]
   parameters: [rA, piA, yQ, kappa, sigma, alpha, phipi, phiy, sigxi, sigy, sigi, rhoxi, rhoi, rhoy, rhopibar, rhoibar, rhoybar, sigibar, sigybar, sigpibar]
   observables: [ygr, infl, int]
   shocks: [epsxi, epsi, epsy, epsybar, epspibar, epsibar]

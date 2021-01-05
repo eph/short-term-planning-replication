@@ -20,21 +20,25 @@ class ModelAttributes(object):
                  "yaml_file",
                  "fortran_directory",
                  "fixed_parameters",
-                 "model")
+                 "model", 
+                 "smc_file")
 
     estimation_settings = {"nphi": 500,
                            "nblocks": 3,
                            "npart": 16000,
                            "pe": 1000}
 
-    def __init__(self, name, yaml_file, fortran_directory, fixed_parameters={}, estimation_settings={}):
+
+
+    def __init__(self, name, yaml_file, fortran_directory, fixed_parameters={}, estimation_settings={}, smc_file=None):
         self.name = name
         self.yaml_file = yaml_file
         self.fortran_directory = fortran_directory
         self.fixed_parameters = fixed_parameters
         self.estimation_settings.update(estimation_settings)
+        self.smc_file = smc_file 
 
-    def load(self, add_shocks=False):
+    def load(self, add_shocks=False, add_hats=False):
         self.model = DSGE.read(self.yaml_file)
         fix_parameters(self.model, **self.fixed_parameters)
 
@@ -48,6 +52,13 @@ class ModelAttributes(object):
                                          Equation(v_epsi, self.model.shocks[1]),
                                          Equation(v_epsy, self.model.shocks[2])])
 
+        if add_hats:
+            v_yhat = Variable('yhat')
+            v_pihat = Variable('pihat')
+            self.model['var_ordering'] = self.model['var_ordering'] + [v_yhat, v_pihat]
+            self.model['perturb_eq'] = (self.model['perturb_eq'] + 
+                                           [Equation(v_yhat, self.model.variables[0] - self.model.variables[3]),
+                                            Equation(v_pihat, self.model.variables[1] - self.model.variables[4])])
 
 
     def parameters(self):
@@ -58,9 +69,12 @@ class ModelAttributes(object):
 
    
 
-    def create_fortran_model(self, smc_file=None):
-        if smc_file is None:                                 
-            smc_file = smc(self.model)                            
+    def create_fortran_model(self):
+        if self.smc_file is None:                                 
+            smc_file = smc(self.model)
+        else:
+            smc_file = self.smc_file 
+
         model_linear = self.model.compile_model()                 
         other_files = {'data.txt': model_linear.yy,          
                        'prior.txt': 'prior.txt'}             
@@ -74,7 +88,7 @@ class ModelAttributes(object):
 
     def load_estimates(self, **kwargs):
         return load_estimates(self.fortran_directory + '/output-*.json',
-                              paranames=finite_horizon_phibar.parameters(),
+                              paranames=self.parameters(),
                               **kwargs)
 
 
@@ -139,17 +153,41 @@ finite_horizon_gamma = ModelAttributes(
     },
 )
 
-
 trends = ModelAttributes(
     name="Stat. Trends",
-    yaml_file="finite_horizon_trend.yaml",
+    yaml_file="models/finite_horizon_trend.yaml",
     fortran_directory="fortran/statistical_trends",
     fixed_parameters={
-        "rho": 1.0,
-        "gamma": 0.5,
-        "gammatilde": "gamma",
-        "phipiLR": 1.5,
-        "phiyLR": 0.25,
         "alpha": 0.75,
     },
 )
+
+
+angeletos_lian = ModelAttributes(
+    name=
+    yaml_file='finite_horizon_angeletos_lian.yaml',
+    fortran_directory='fortran/angeletos_lian',
+    fixed_parameters={
+        "alpha":0.75,
+        "phipiLR":1.5, 
+        "phiyLR":0.25
+    },
+)
+    
+
+
+single_agent_template = open('single_agent_template.f90').read()
+
+single_agent_models = [
+    ModelAttributes(
+        name=r"$FH-\bar\phi$ Rep. Agent ($k=%d)" % k,
+        yaml_file="models/finite_horizon.yaml",
+        fortran_directory="fortran/finite_horizon_phibar_k%d" % k,
+        fixed_parameters={
+            "gammatilde": "gamma",
+            "alpha": 0.75,
+        },
+        smc_file=single_agent_template.format(k=k)
+    )
+    for k in range(5)]
+

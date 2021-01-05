@@ -12,7 +12,7 @@ import pandas as p
 
 model_list = [
     canonical_NK,
-    #trends,
+    trends,
     finite_horizon,
     finite_horizon_gamma,
     finite_horizon_phibar
