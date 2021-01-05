@@ -121,7 +121,7 @@ finite_horizon = ModelAttributes(
 
 
 finite_horizon = ModelAttributes(
-    name="FH",
+    name="FHP-baseline",
     yaml_file="models/finite_horizon.yaml",
     fortran_directory="fortran/finite_horizon",
     fixed_parameters={
@@ -133,7 +133,7 @@ finite_horizon = ModelAttributes(
 )
 
 finite_horizon_phibar = ModelAttributes(
-    name=r"$FH-\bar\phi$",
+    name=r"FHP-\(\bar\phi\)",
     yaml_file="models/finite_horizon.yaml",
     fortran_directory="fortran/finite_horizon_phibar",
     fixed_parameters={
@@ -143,7 +143,7 @@ finite_horizon_phibar = ModelAttributes(
 )
 
 finite_horizon_gamma = ModelAttributes(
-    name=r"$FH-\tilde\gamma$",
+    name=r"FHP-\(\tilde\gamma\)",
     yaml_file="models/finite_horizon.yaml",
     fortran_directory="fortran/finite_horizon_gamma",
     fixed_parameters={
@@ -154,7 +154,7 @@ finite_horizon_gamma = ModelAttributes(
 )
 
 trends = ModelAttributes(
-    name="Stat. Trends",
+    name="Exog. Trends",
     yaml_file="models/finite_horizon_trend.yaml",
     fortran_directory="fortran/statistical_trends",
     fixed_parameters={
@@ -186,7 +186,7 @@ habits = ModelAttributes(
 
 
 habits_lampi = ModelAttributes(
-    name=r"Hybrid NK-\(\lambda_\pi\)",
+    name="Hybrid NK-\(\lambda_\pi\)",
     yaml_file='models/finite_horizon_habits_lam.yaml',
     fortran_directory='fortran/habits_lampi',
     fixed_parameters={
@@ -199,7 +199,7 @@ single_agent_template = open('single_agent_template.f90').read()
 
 single_agent_models = [
     ModelAttributes(
-        name=r"$FH-\bar\phi$ Rep. Agent ($k=%d)" % k,
+        name=r"FHP-\(\bar\phi\) Rep. Agent (\(k=%d\))" % k,
         yaml_file="models/finite_horizon.yaml",
         fortran_directory="fortran/finite_horizon_phibar_k%d" % k,
         fixed_parameters={
