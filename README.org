@@ -152,6 +152,12 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
            --nprocs NPROCS
      #+end_src      
      
+     *Finally,* the ICPSR repository also provides the estimated
+     posteriors (about 1 gigabyte in size) in the file
+     ~estimated-posteriors.zip~.  To use these instead, simply
+     download the zip file and extract it from the base directory, 
+     after having created all the models. 
+
   7. Estimate all the (full sample) models with: 
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ ./scripts/04-estimate-time-posteriors.sh
