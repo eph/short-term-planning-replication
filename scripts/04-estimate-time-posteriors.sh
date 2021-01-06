@@ -1,3 +1,4 @@
+#!/bin/bash
 export OPENBLAS_NUM_THREADS=1
 export NPROCS=4
 cd fortran/finite_horizon_phibar
