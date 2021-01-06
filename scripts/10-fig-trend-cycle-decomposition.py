@@ -71,25 +71,25 @@ with saved_figure('figures-tables/woodford_terminal_smooth_shaded_i.pdf', nrows=
 
 
 with saved_figure('figures-tables/woodford_terminal_y_level.pdf', nrows=2) as (fig,ax):
-  ax = ax[::-1]
-  mu = filts.groupby(filts.index).mean()
-  q05 = filts.groupby(filts.index).quantile(0.05)
-  q95 = filts.groupby(filts.index).quantile(0.95)
-  ax[1].fill_between(q05.index.to_timestamp(), q05.ytilde, q95.ytilde, alpha=0.4)
-  ax[1].plot(q05.index.to_timestamp(), 100*data['xgap']['1966':'2007'].values, color='black')
-  ax[1].set_title(r"$y_t - \bar y_t$", fontsize=18, usetex=True)
+    ax = ax[::-1]
+    mu = filts.groupby(filts.index).mean()
+    q05 = filts.groupby(filts.index).quantile(0.05)
+    q95 = filts.groupby(filts.index).quantile(0.95)
+    ax[1].fill_between(q05.index.to_timestamp(), q05.ytilde, q95.ytilde, alpha=0.4)
+    ax[1].plot(q05.index.to_timestamp(), 100*data['xgap']['1966':'2007'].values, color='black')
+    ax[1].set_title(r"$y_t - \bar y_t$", fontsize=18, usetex=True)
 
-  (linear_model.yy.ygr.cumsum()-filts.groupby(filts.index).ytilde.mean()).plot(ax=ax[0])
-  (linear_model.yy.ygr.cumsum()).plot(ax=ax[0],linestyle='dashed')
+    (linear_model.yy.ygr.cumsum()-filts.groupby(filts.index).ytilde.mean()).plot(ax=ax[0])
+    (linear_model.yy.ygr.cumsum()).plot(ax=ax[0],linestyle='dashed')
 
-  ax[0].legend([r'Trend Output', r'Actual Output'], fontsize=18);
-  ax[0].set_title("Trend Output Level", fontsize=18)
-  ax[0] = add_rec_bars(ax[0])
-  ax[1] = add_rec_bars(ax[1])
+    ax[0].legend([r'Trend Output', r'Actual Output'], fontsize=18);
+    ax[0].set_title("Trend Output Level", fontsize=18)
+    ax[0] = add_rec_bars(ax[0])
+    ax[1] = add_rec_bars(ax[1])
 
-  ax[1].legend([r'CBO Output Gap',r'Model Output Gap'], fontsize=18, loc='lower left')
-
-  fig.set_size_inches(15,5.8)
-  fig.tight_layout()
+    ax[1].legend([r'CBO Output Gap',r'Model Output Gap'], fontsize=18, loc='lower left')
+    
+    fig.set_size_inches(15,5.8)
+    fig.tight_layout()
 
 
