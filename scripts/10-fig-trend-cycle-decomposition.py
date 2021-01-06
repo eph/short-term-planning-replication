@@ -44,9 +44,9 @@ with saved_figure('figures-tables/woodford_terminal_smooth_shaded.pdf', nrows=3)
     ax[1].set_title(r'$\pi_t^A - \bar \pi_t^A$', fontsize=18, usetex=True)
      
      
-    # ptr = p.read_csv('data/raw/inflexp.txt',names=['date','ptr'],delim_whitespace=True).ptr
-    # ptr.index = p.period_range(start='1964Q2',freq='Q', periods=ptr.shape[0])
-    # ptr.fillna(method='ffill').plot(ax=ax[2],color='black',linestyle='dashed')
+    ptr = p.read_csv('data/inflexp.txt',names=['date','ptr'],delim_whitespace=True).ptr
+    ptr.index = p.period_range(start='1964Q2',freq='Q', periods=ptr.shape[0])
+    ptr.fillna(method='ffill').plot(ax=ax[2],color='black',linestyle='dashed')
     ax[2].fill_between(index, q05.pibarobs, q95.pibarobs, alpha=0.3)
     ax[2].set_title(r'$\pi^A + \bar\pi_t^A$ and Long Run Inflation Expectations', usetex=True, fontsize=18);
     ax[2].set_xlim('1979Q4','2007')
@@ -68,7 +68,8 @@ with saved_figure('figures-tables/woodford_terminal_smooth_shaded_i.pdf', nrows=
     ax[1].set_title(r'$i_t^A - \bar i_t^A$', fontsize=18, usetex=True)
    
     [add_rec_bars(axi) for axi in ax.reshape(-1)]
-
+    fig.set_size_inches(12,6.2)
+    fig.tight_layout()
 
 with saved_figure('figures-tables/woodford_terminal_y_level.pdf', nrows=2) as (fig,ax):
     ax = ax[::-1]
