@@ -158,32 +158,30 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
      /Note/: this can take quite a long time! See the details below to for how to create individual tables and figures.  
 
 
-**** Details
-
-
 *** List of tables and programs
 
 The provided code reproduces all numbers provided in text in the
-paper.  Please be aware because that numbers generated in the
-replication can differ from the published version slightly because of
-the numerical standard error associated with the sequential Monte
-Carlo algorithm. 
+paper.  (/Tables 1 and 2 are not the result of any computation./)
+
+Please be aware because that numbers generated in the replication can
+differ from the published version slightly because of the numerical
+standard error associated with the sequential Monte Carlo algorithm.
 
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
 | Figure/Table # | Program                                       | Line Number | Output File*                          |
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
-| Figure 1       | 04-fig-impulse-response-disinflation-shock.py |             | disinflation_shock.pdf                |
-| Table 3        | 05-tab-posterior.py                           |             | main-posterior-table.tex              |
-| Figure 2       | 06-fig-joint-posterior.py                     |             | rho_gamma_scatter.pdf                 |
-| Figure 3       | 07-fig-difference-log-mdd-time.py             |             |                                       |
-| Figure 4       | 08-fig-impulse-response-monetary-shock.py     |             | woodford_terminal_irf_epsi_shaded.pdf |
-| Figure 5       | 09-fig-trend-cycle-decomposition.py           |          35 | woodford_terminal_smooth_shaded.pdf   |
-| Figure 6       | 10-fig-trend-cycle-decomposition.py           |          59 | woodford_terminal_smooth_shaded_i.pdf |
-| Figure 7       | 11-fig-trend-cycle-decomposition.py           |          72 | woodford_terminal_y_level.pdf         |
-| Figure 8       | 12-fig-estimated-shocks.py                    |             |                                       |
-| Figure 9       |                                               |             | shock_decomposition.pdf               |
-| Table 4        | 12-tab-log-mdd-single-agents.py               |             | single-agent-table.tex                |
-| Table 5        | 13-tab-log-mdd-alternative-models.py          |             | other-nk-mdd-table.tex                |
+| Figure 1       | 05-fig-impulse-response-disinflation-shock.py |          92 | disinflation_shock.pdf                |
+| Table 3        | 06-tab-posterior.py                           |          69 | main-posterior-table.tex              |
+| Figure 2       | 07-fig-joint-posterior.py                     |           8 | rho_gamma_scatter.pdf                 |
+| Figure 3       | 08-fig-difference-log-mdd-time.py             |          25 | cumulative_logmdd_difference.pdf      |
+| Figure 4       | 09-fig-impulse-response-monetary-shock.py     |          20 | woodford_terminal_irf_epsi_shaded.pdf |
+| Figure 5       | 10-fig-trend-cycle-decomposition.py           |          36 | woodford_terminal_smooth_shaded.pdf   |
+| Figure 6       | 10-fig-trend-cycle-decomposition.py           |          60 | woodford_terminal_smooth_shaded_i.pdf |
+| Figure 7       | 10-fig-trend-cycle-decomposition.py           |          73 | woodford_terminal_y_level.pdf         |
+| Figure 8       | 11-fig-estimated-shocks.py                    |          24 | shock_series.pdf                      |
+| Figure 9       | 12-fig-trend-cycle-counterfactual.py          |          46 | shock_decomposition.pdf               |
+| Table 4        | 13-tab-log-mdd-single-agents.py               |          21 | single-agent-table.tex                |
+| Table 5        | 14-tab-log-mdd-alternative-models.py          |          14 | other-nk-mdd-table.tex                |
 |----------------+-----------------------------------------------+-------------+---------------------------------------|
 All output is in the directory ~figures-tables/~. 
 
