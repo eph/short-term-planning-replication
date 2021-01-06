@@ -3,6 +3,7 @@ from dsge.translate import smc, write_prior_file
 from dsge.symbols import Parameter, Variable, Equation
 from dsge.DSGE import DSGE
 
+
 def fix_parameters(model, **kwargs):
     """Takes an estimated parameter from a DSGEModel
     and converts it to a calibrated one."""
@@ -15,7 +16,9 @@ def fix_parameters(model, **kwargs):
 
 
 class ModelAttributes(object):
-
+    """
+    A container for models and their attributes
+    """
     __slots__ = ("name",
                  "yaml_file",
                  "fortran_directory",
@@ -104,6 +107,10 @@ canonical_NK = ModelAttributes(
         "phiyLR": "phiy",
         "alpha": 0.75,
     },
+    estimation_settings={
+        'npart': 25000,
+        'nblocks': 6,
+        'nphi': 2000}
 )
 
 
@@ -151,6 +158,11 @@ finite_horizon_gamma = ModelAttributes(
         "phiyLR": "phiy",
         "alpha": 0.75,
     },
+    estimation_settings={
+        'npart': 25000,
+        'nblocks': 6,
+        'nphi': 2000
+    }
 )
 
 trends = ModelAttributes(
