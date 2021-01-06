@@ -66,7 +66,7 @@ tbl = (
     .to_latex(na_rep="", escape=False, multicolumn_format="c")
 )
 
-f = open("figures-tables/main-posterior-table.tex", "w")
-f.write(tbl)
-f.close()
+with open("figures-tables/main-posterior-table.tex", "w") as f: 
+    f.write(tbl)
+
 print(tbl)
