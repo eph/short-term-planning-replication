@@ -126,7 +126,7 @@ with saved_figure('figures-tables/disinflation_shock.pdf',nrows=3, ncols=2) as (
     ax[2,1].set_ylim(-1,0.1)
     fig.tight_layout()
     fig.subplots_adjust(bottom=0.12)
-    ax[2,0].legend([r'Estimated FH-\(\bar\phi\)', 'Canonical NK', r'FH-\(\bar\phi\) with greater updating'], 
+    ax[2,0].legend([r'Estimated FHP-\(\bar\phi\)', 'Canonical NK', r'FHP-\(\bar\phi\) with greater updating'], 
                      ncol=3,frameon=False,loc=(0.15,-0.53))
     #
     [axi.axhline(0,linewidth=0.3,alpha=0.7,color='black') for axi in ax.reshape(-1)]
