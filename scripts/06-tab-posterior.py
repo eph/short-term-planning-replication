@@ -58,15 +58,25 @@ tbl = (
     .stack(level=-1)
     .T.round(2)
     .reindex(all_parameters)
-    .rename(index=latex)
+    #.rename(index=latex)
     .dropna(how="all")
     .xs([m.name for m in model_list], axis=1)
     .round(2)
     .rename(columns={"mean": "Mean", "std": "SD"}, level=1)
-    .to_latex(na_rep="", escape=False, multicolumn_format="c")
+    #.to_latex(na_rep="", escape=False, multicolumn_format="c") new table format
 )
 
 with open("figures-tables/main-posterior-table.tex", "w") as f: 
-    f.write(tbl)
+    f.write("\\begin{tabular}{lccccc}\n\\toprule\n")
+    f.write(''.join([''] + ['& %s ' % m.name for m in model_list]) + '\\\\ \n')
+    for para in all_parameters:
+        try: 
+            mu = ['%20s' % latex[para]] + [(' &  %5.2f  ' % _).replace('NaN','') for _ in tbl.loc[para].unstack().Mean]
+            sd = ['%20s' % ''] + [(' & (%5.2f) ' % _).replace('NaN','') for _ in tbl.loc[para].unstack().SD]
+            f.write(''.join(mu) + '\\\\  \n' + ''.join(sd) + '\\\\ [0.25em] \n')
+        except:
+            pass
+        
+    f.write('\\bottomrule\n\\end{tabular}')
 
 print(tbl)
