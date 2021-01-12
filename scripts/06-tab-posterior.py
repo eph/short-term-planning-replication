@@ -71,8 +71,8 @@ with open("figures-tables/main-posterior-table.tex", "w") as f:
     f.write(''.join([''] + ['& %s ' % m.name for m in model_list]) + '\\\\ \n')
     for para in all_parameters:
         try: 
-            mu = ['%20s' % latex[para]] + [(' &  %5.2f  ' % _).replace('nan','') for _ in tbl.loc[para].unstack().Mean]
-            sd = ['%20s' % ''] + [(' & (%5.2f) ' % _).replace('(  nan)','') for _ in tbl.loc[para].unstack().SD]
+            mu = ['%20s' % latex[para]] + [(' &  %5.2f  ' % tbl.loc[para].unstack().Mean[m.name]).replace('nan','') for m in model_list]
+            sd = ['%20s' % ''] + [(' & (%5.2f) ' % tbl.loc[para].unstack().SD[m.name]).replace('(  nan)','') for m in model_list]
             f.write(''.join(mu) + '\\\\  \n' + ''.join(sd) + '\\\\ [0.25em] \n')
         except:
             pass

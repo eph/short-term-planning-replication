@@ -55,6 +55,7 @@ latex = {
     "a": r"$a$",
     "lambda_y": r"$\lambda_y$",
     "lambda_pi": r"$\lambda_\pi$",
+    "lampi": r"$\lambda_\pi$",
     "logmdd": r"Log MDD",
 }
 

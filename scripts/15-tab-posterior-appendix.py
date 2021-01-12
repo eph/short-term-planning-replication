@@ -68,6 +68,7 @@ all_parameters = [
     "gamma",
     "gammatilde",
     "rhof",
+    "lampi",
     "lam",
     "nu",
     "a",
@@ -87,7 +88,7 @@ all_parameters = [
 ]
 tbl = (
     results.groupby(level=0)
-    .agg([np.mean, np.median, np.std])
+    .agg([np.mean, np.std])
     .stack(level=-1)
     .T.round(2)
     .reindex(all_parameters)
@@ -104,8 +105,9 @@ with open("figures-tables/appendix-FH-habits-posterior-table.tex", "w") as f:
     f.write(''.join([''] + ['& %s ' % m.name for m in model_list]) + '\\\\ \n')
     for para in all_parameters:
         try: 
-            mu = ['%20s' % latex[para]] + [(' &  %5.2f  ' % _).replace('nan','') for _ in tbl.loc[para].unstack().Mean]
-            sd = ['%20s' % ''] + [(' & (%5.2f) ' % _).replace('(  nan)','') for _ in tbl.loc[para].unstack().SD]
+            print(para)
+            mu = ['%20s' % latex[para]] + [(' &  %5.2f  ' % tbl.loc[para].unstack().Mean[m.name]).replace('nan','') for m in model_list]
+            sd = ['%20s' % ''] + [(' & (%5.2f) ' % tbl.loc[para].unstack().SD[m.name]).replace('(  nan)','') for m in model_list]
             f.write(''.join(mu) + '\\\\  \n' + ''.join(sd) + '\\\\ [0.25em] \n')
         except:
             pass
