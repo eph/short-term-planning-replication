@@ -1,0 +1,6 @@
+*.json
+smc
+*.mod
+*.pdf
+*.tex
+scripts/__pycache__/
