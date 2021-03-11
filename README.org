@@ -107,8 +107,16 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
      not necessary to create the figures and tables.)  For each model,
      there are 10 output files, each corresponding to a single run of
      the SMC sampler.  The naming convention is
-     ~fortran/{model}/output-NN.json~ where the 
-     
+     ~fortran/{model}/output-NN.json~ where the ~{model}~ refers to
+     the specific model and ~NN~ is an integer from 1 to 10.  These
+     files will be recreated if Step 7 (below) is executed.
+
+     The Canonical New Keynesian model and Finite Horizon Planning
+     phibar model directories also contain an additional directory
+     called ~time-posteriors~.  These directories contain output files
+     ~output-DDD.json~.  These are the posterior based only on data up
+     until time period ~DDD~.  This data is used to create
+     Figure 3. These files will be recreated if Step 8 (below) is executed. 
 
 
 *** License for Code
@@ -171,7 +179,7 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/create-all-figures-and-tables.sh
      #+end_src           
-     /Note/: this can take a bit of time! See the details below to for how to create individual tables and figures.  
+     /Note/: See the details below to for how to create individual tables and figures.  
 
 
 *** List of tables and programs
@@ -182,37 +190,41 @@ paper.  (/Tables 1 and 2 are not the result of any computation./)
 Please be aware because that numbers generated in the replication can
 differ from the published version slightly because of the numerical
 standard error associated with the sequential Monte Carlo algorithm.
-This is particularly of the number of effective draws, whose
+This is particularly true of the number of effective draws, whose
 calculation involves an inverse of this number. 
 
+
 |----------------+------------------------------------------------------+-------------+--------------------------------------------------|
-| Figure/Table # | Program                                              | Line Number | Output File*                                     |
+| Figure/Table # | Program                                              | Line Number | Output File                                      |
 |----------------+------------------------------------------------------+-------------+--------------------------------------------------|
 | Figure 1       | 05-fig-impulse-response-disinflation-shock.py        |          92 | disinflation_shock.pdf                           |
 | Table 3        | 06-tab-posterior.py                                  |          69 | main-posterior-table.tex                         |
 | Figure 2       | 07-fig-joint-posterior.py                            |           8 | rho_gamma_scatter.pdf                            |
-| Figure 3       | 08-fig-difference-log-mdd-time.py                    |          25 | cumulative_logmdd_difference.pdf                 |
+| Figure 3       | 08-fig-difference-log-mdd-time.py                    |          27 | cumulative_logmdd_difference.pdf                 |
 | Figure 4       | 09-fig-impulse-response-monetary-shock.py            |          20 | woodford_terminal_irf_epsi_shaded.pdf            |
 | Figure 5       | 10-fig-trend-cycle-decomposition.py                  |          36 | woodford_terminal_smooth_shaded.pdf              |
 | Figure 6       | 10-fig-trend-cycle-decomposition.py                  |          60 | woodford_terminal_smooth_shaded_i.pdf            |
-| Figure 7       | 10-fig-trend-cycle-decomposition.py                  |          73 | woodford_terminal_y_level.pdf                    |
-| Figure 8       | 11-fig-estimated-shocks.py                           |          24 | shock_series.pdf                                 |
+| Figure 7       | 10-fig-trend-cycle-decomposition.py                  |          74 | woodford_terminal_y_level.pdf                    |
+| Figure 8       | 11-fig-estimated-shocks.py                           |          25 | shock_series.pdf                                 |
 | Figure 9       | 12-fig-trend-cycle-counterfactual.py                 |          46 | shock_decomposition.pdf                          |
 | Table 4        | 13-tab-log-mdd-single-agents.py                      |          21 | single-agent-table.tex                           |
-| Table 5        | 14-tab-log-mdd-alternative-models.py                 |          14 | other-nk-mdd-table.tex                           |
-| Figure A-1     | 15-fig-impulse-response-monetary-shock-calibrated.py |          89 | example_irf_epsi.pdf                             |
-| Table A-1      | 15-tab-posterior-appendix.py                         |             | appendix-FH-habits-posterior-table.tex           |
-| Figure A-2     | 16-fig-posterior-predictive-checks.py                |          51 | posterior-predictive-checks.pdf                  |
-| Table A-2      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-forward.tex             |
-| Table A-3      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-trends.tex              |
-| Table A-4      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both.tex                |
-| Table A-5      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both-gam.tex            |
-| Table A-6      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both_terminal.tex       |
-| Table A-7      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-angeletos.tex           |
-| Table A-8      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-habits_restricted.tex   |
-| Table A-9      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-habits_restricted_y.tex |
-| Figure A-3     |                                                      |             |                                                  |
+| Table 5        | 14-tab-log-mdd-alternative-models.py                 |          40 | other-nk-mdd-table.tex                           |
+| Figure A-1     | 15-fig-impulse-response-monetary-shock-calibrated.py |          26 | example_irf_epsi.pdf                             |
+| Table A-1      | 16-tab-posterior-comparison-appendix.py              |          65 | appendix-FH-habits-posterior-table.tex           |
+| Figure A-2     | 17-fig-posterior-predictive-checks.py                |          51 | posterior-predictive-checks.pdf                  |
+| Table A-2      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-forward.tex             |
+| Table A-3      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-trends.tex              |
+| Table A-4      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-both.tex                |
+| Table A-5      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-both-gam.tex            |
+| Table A-6      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-both_terminal.tex       |
+| Table A-7      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-angeletos.tex           |
+| Table A-8      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-habits_restricted.tex   |
+| Table A-9      | 18-tab-posterior-appendix.py                         |          30 | appendix-posterior-table-habits_restricted_y.tex |
+| Figure A-3     | 19-fig-estimated-innovations.py                      |          24 | innovation_series.pdf                            |
 |----------------+------------------------------------------------------+-------------+--------------------------------------------------|
 All output is in the directory ~figures-tables/~. 
 
-
+To run any individual script:
+#+begin_src sh
+(short-term-planning-replication) user@computer:short-term-planning-replication$ python scripts/SCRIPT.py
+#+end_src           
