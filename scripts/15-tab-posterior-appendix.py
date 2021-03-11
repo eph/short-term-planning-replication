@@ -19,6 +19,7 @@ model_dict = {
 'habits_restricted': habits,
 'habits_restricted_y': habits_lampi,
 'angeletos': angeletos_lian,
+'trends': trends
 }
 
 
@@ -111,7 +112,7 @@ with open("figures-tables/appendix-FH-habits-posterior-table.tex", "w") as f:
             f.write(''.join(mu) + '\\\\  \n' + ''.join(sd) + '\\\\ [0.25em] \n')
         except:
             pass
-        
+      
     f.write('\\bottomrule\n\\end{tabular}')
 
 

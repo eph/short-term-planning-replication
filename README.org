@@ -1,7 +1,7 @@
-#+TITLE: Replication Material For "Short-term Planning, Monetary Policy, and Macroeconomic Persistence"
+#+TITLE: Data and Code For "Short-term Planning, Monetary Policy, and Macroeconomic Persistence"
 
 The code in this replication package estimates the models and
-constructs the figures and table from Gust, Herbst, and Lopez-Salido
+constructs the figures and tables from Gust, Herbst, and Lopez-Salido
 (AEJ: Macro, 202x) using Fortran and Python.  
 
 ** Data
@@ -70,7 +70,7 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 - Linux-based operating system. 
 - Conda package and environment management system with python 3.6 or higher.
   - The file ~env.yaml~ contains the details of the python3+mpif90 environment to run all of the code.  See /Instructions to Replicators/ step 2 to install this environment. 
-
+- A valid TeX installation. 
 
 *** Memory and Runtime Requirements
 
@@ -99,7 +99,17 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 
        
      The ~models/~ directory contain the models in [[https://yaml.org][YAML]] format.  These
-     files are parse by the python package ~dsge~, referenced above. 
+     files are parsed by the python package ~dsge~, referenced above. 
+
+     The ~fortran~ directory initially contains the output of the SMC
+     sampler.  Once ~scripts/create-fortran-models.py~ has been run,
+     it also contains the fortran models.  (Note running this file is
+     not necessary to create the figures and tables.)  For each model,
+     there are 10 output files, each corresponding to a single run of
+     the SMC sampler.  The naming convention is
+     ~fortran/{model}/output-NN.json~ where the 
+     
+
 
 *** License for Code
 
@@ -108,29 +118,35 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
 ** Instructions to Replicators
 
   1. Install [[https://docs.conda.io/en/latest/][Conda]].
-  2. From a shell prompt, create the necessary python environment, using:
+  2. Install LaTex. On Ubuntu, this can be accomplished via the shell prompt:
+     #+begin_src sh
+     user@computer:~$ sudo apt-get install texlive-full
+     #+end_src
+
+  3. From a shell prompt, create the necessary python environment, using:
      #+begin_src sh
      user@computer:short-term-planning-replication$ conda env create --file env.yaml
      #+end_src 
+
      Create some necessary directories:
      #+begin_src sh
      user@computer:short-term-planning-replication$ mkdir -p figures-tables
      user@computer:short-term-planning-replication$ mkdir -p fortran
      #+end_src 
 
-  3. Activate the environment with:
+  4. Activate the environment with:
      #+begin_src sh
      user@computer:short-term-planning-replication$ source activate short-term-planning-replication
      #+end_src 
-  4. /(Optional.)/ Download the data from FRED:
+  5. /(Optional.)/ Download the data from FRED:
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ python scripts/01-construct-estimation-data.py
      #+end_src      
-  5. Create the fortran models with:
+  6. /(Optional, only to estimate the models.)/ Create the fortran models with:
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ python scripts/02-construct-fortran-models.py
      #+end_src      
-  6. Estimate all the (full sample) models with: 
+  7. /(Optional, only to estimate the models.)/ Estimate all the (full sample) models with: 
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/estimate-all-models.sh
      #+end_src      
@@ -152,22 +168,18 @@ constructs the figures and table from Gust, Herbst, and Lopez-Salido
            --nprocs NPROCS
      #+end_src      
      
-     *Finally,* the ICPSR repository also provides the estimated
-     posteriors (about 1 gigabyte in size) in the file
-     ~estimated-posteriors.zip~.  To use these instead, simply
-     download the zip file and extract it from the base directory, 
-     after having created all the models. 
 
-  7. Estimate all the (full sample) models with: 
+  8. /(Optional, only to estimate time posteriors.)/ Estimate all the time posteriors of CNK and FHP models with: 
      #+begin_src sh
      (short-term-planning-replication) user@computer:short-term-planning-replication$ ./scripts/04-estimate-time-posteriors.sh
      #+end_src      
      /Note/: this can take quite a long time! 
-  8. Construct the tables and figures.
+
+  9. Construct the tables and figures.
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/construct-all-tables-and-figures.sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/create-all-figures-and-tables.sh
      #+end_src           
-     /Note/: this can take quite a long time! See the details below to for how to create individual tables and figures.  
+     /Note/: this can take a bit of time! See the details below to for how to create individual tables and figures.  
 
 
 *** List of tables and programs
@@ -178,23 +190,37 @@ paper.  (/Tables 1 and 2 are not the result of any computation./)
 Please be aware because that numbers generated in the replication can
 differ from the published version slightly because of the numerical
 standard error associated with the sequential Monte Carlo algorithm.
+This is particularly of the number of effective draws, whose
+calculation involves an inverse of this number. 
 
-|----------------+-----------------------------------------------+-------------+---------------------------------------|
-| Figure/Table # | Program                                       | Line Number | Output File*                          |
-|----------------+-----------------------------------------------+-------------+---------------------------------------|
-| Figure 1       | 05-fig-impulse-response-disinflation-shock.py |          92 | disinflation_shock.pdf                |
-| Table 3        | 06-tab-posterior.py                           |          69 | main-posterior-table.tex              |
-| Figure 2       | 07-fig-joint-posterior.py                     |           8 | rho_gamma_scatter.pdf                 |
-| Figure 3       | 08-fig-difference-log-mdd-time.py             |          25 | cumulative_logmdd_difference.pdf      |
-| Figure 4       | 09-fig-impulse-response-monetary-shock.py     |          20 | woodford_terminal_irf_epsi_shaded.pdf |
-| Figure 5       | 10-fig-trend-cycle-decomposition.py           |          36 | woodford_terminal_smooth_shaded.pdf   |
-| Figure 6       | 10-fig-trend-cycle-decomposition.py           |          60 | woodford_terminal_smooth_shaded_i.pdf |
-| Figure 7       | 10-fig-trend-cycle-decomposition.py           |          73 | woodford_terminal_y_level.pdf         |
-| Figure 8       | 11-fig-estimated-shocks.py                    |          24 | shock_series.pdf                      |
-| Figure 9       | 12-fig-trend-cycle-counterfactual.py          |          46 | shock_decomposition.pdf               |
-| Table 4        | 13-tab-log-mdd-single-agents.py               |          21 | single-agent-table.tex                |
-| Table 5        | 14-tab-log-mdd-alternative-models.py          |          14 | other-nk-mdd-table.tex                |
-|----------------+-----------------------------------------------+-------------+---------------------------------------|
+|----------------+------------------------------------------------------+-------------+--------------------------------------------------|
+| Figure/Table # | Program                                              | Line Number | Output File*                                     |
+|----------------+------------------------------------------------------+-------------+--------------------------------------------------|
+| Figure 1       | 05-fig-impulse-response-disinflation-shock.py        |          92 | disinflation_shock.pdf                           |
+| Table 3        | 06-tab-posterior.py                                  |          69 | main-posterior-table.tex                         |
+| Figure 2       | 07-fig-joint-posterior.py                            |           8 | rho_gamma_scatter.pdf                            |
+| Figure 3       | 08-fig-difference-log-mdd-time.py                    |          25 | cumulative_logmdd_difference.pdf                 |
+| Figure 4       | 09-fig-impulse-response-monetary-shock.py            |          20 | woodford_terminal_irf_epsi_shaded.pdf            |
+| Figure 5       | 10-fig-trend-cycle-decomposition.py                  |          36 | woodford_terminal_smooth_shaded.pdf              |
+| Figure 6       | 10-fig-trend-cycle-decomposition.py                  |          60 | woodford_terminal_smooth_shaded_i.pdf            |
+| Figure 7       | 10-fig-trend-cycle-decomposition.py                  |          73 | woodford_terminal_y_level.pdf                    |
+| Figure 8       | 11-fig-estimated-shocks.py                           |          24 | shock_series.pdf                                 |
+| Figure 9       | 12-fig-trend-cycle-counterfactual.py                 |          46 | shock_decomposition.pdf                          |
+| Table 4        | 13-tab-log-mdd-single-agents.py                      |          21 | single-agent-table.tex                           |
+| Table 5        | 14-tab-log-mdd-alternative-models.py                 |          14 | other-nk-mdd-table.tex                           |
+| Figure A-1     | 15-fig-impulse-response-monetary-shock-calibrated.py |          89 | example_irf_epsi.pdf                             |
+| Table A-1      | 15-tab-posterior-appendix.py                         |             | appendix-FH-habits-posterior-table.tex           |
+| Figure A-2     | 16-fig-posterior-predictive-checks.py                |          51 | posterior-predictive-checks.pdf                  |
+| Table A-2      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-forward.tex             |
+| Table A-3      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-trends.tex              |
+| Table A-4      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both.tex                |
+| Table A-5      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both-gam.tex            |
+| Table A-6      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-both_terminal.tex       |
+| Table A-7      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-angeletos.tex           |
+| Table A-8      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-habits_restricted.tex   |
+| Table A-9      | 15-tab-posterior-appendix.py                         |             | appendix-posterior-table-habits_restricted_y.tex |
+| Figure A-3     |                                                      |             |                                                  |
+|----------------+------------------------------------------------------+-------------+--------------------------------------------------|
 All output is in the directory ~figures-tables/~. 
 
 
