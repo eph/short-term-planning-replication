@@ -1,5 +1,5 @@
 from models import canonical_NK
-from figures import saved_figures
+from figures import saved_figure
 
 import json
 

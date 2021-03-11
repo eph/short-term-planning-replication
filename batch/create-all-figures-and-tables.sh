@@ -8,3 +8,8 @@ python scripts/11-fig-estimated-shocks.py
 python scripts/12-fig-trend-cycle-counterfactual.py                    
 python scripts/13-tab-log-mdd-single-agents.py                         
 python scripts/14-tab-log-mdd-alternative-models.py                    
+python scripts/15-fig-impulse-response-monetary-shock-calibrated.py                 
+python scripts/16-tab-posterior-comparison-appendix.py                              
+python scripts/17-fig-posterior-predictive-checks.py                                
+python scripts/18-tab-posterior-appendix.py                                         
+python scripts/19-fig-estimated-innovations.py                                      
