@@ -6,3 +6,5 @@ zip short-term-planning-replication.zip scripts/* -x scripts/__pycache__/
 zip short-term-planning-replication.zip figures-tables
 zip -r short-term-planning-replication.zip models/*
 zip -r short-term-planning-replication.zip fortran/*/output*
+zip  short-term-planning-replication.zip fortran/canonical_NK/time-posteriors/*
+zip  short-term-planning-replication.zip fortran/finite_horizon_phibar/time-posteriors/*
