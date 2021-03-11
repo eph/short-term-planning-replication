@@ -6,3 +6,12 @@ smc
 scripts/__pycache__/
 __pycache__
 _minted*
+*.f90
+*.mod
+smc
+prior.txt
+data.txt
+makefile
+README.md
+estimation.sh
+short-term-planning-replication.zip
