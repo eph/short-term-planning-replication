@@ -41,7 +41,7 @@ parser.add_argument(
         "finite_horizon",
         "finite_horizon_gamma",
         "finite_horizon_phibar",
-        "angeetos_lian",
+        "angeletos_lian",
         "habits",
         "habits_lampi" "finite_horizon_phibar_k0",
         "finite_horizon_phibar_k1",

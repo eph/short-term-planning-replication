@@ -122,18 +122,10 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
      #+begin_src sh
      user@computer:~$ sudo apt-get install texlive-full
      #+end_src
-
   3. From a shell prompt, create the necessary python environment, using:
      #+begin_src sh
      user@computer:short-term-planning-replication$ conda env create --file env.yaml
      #+end_src 
-
-     Create some necessary directories:
-     #+begin_src sh
-     user@computer:short-term-planning-replication$ mkdir -p figures-tables
-     user@computer:short-term-planning-replication$ mkdir -p fortran
-     #+end_src 
-
   4. Activate the environment with:
      #+begin_src sh
      user@computer:short-term-planning-replication$ source activate short-term-planning-replication
