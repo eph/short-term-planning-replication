@@ -1,6 +1,8 @@
 from models import canonical_NK
 from figures import saved_figure
 
+import pandas as p 
+
 import json
 
 import numpy as np
@@ -13,7 +15,7 @@ def load_Z_estimates(path):
     results = []
     for i in range(1, H+1):
         json_file = json.loads(open(path.format(i)).read())
-        results.append({'T': json_file['tempering_T'][0], 
+        results.append({'T': i, 
                         'Z': np.array(json_file['Z_estimates']).sum()})
     return p.DataFrame(results)
 
