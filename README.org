@@ -126,11 +126,12 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
 ** Instructions to Replicators
 
   1. Install [[https://docs.conda.io/en/latest/][Conda]].
-  2. Install LaTex. On Ubuntu, this can be accomplished via the shell prompt:
+  2. Install LaTex, if you don't already have it on your system. On
+     Ubuntu, this can be accomplished via the shell prompt:
      #+begin_src sh
      user@computer:~$ sudo apt-get install texlive-full
      #+end_src
-  3. From a shell prompt, create the necessary python environment, using:
+  3. Download the file, and cd to the ~short-term-planning-replication-directory~. From a shell prompt, create the necessary python environment, using:
      #+begin_src sh
      user@computer:short-term-planning-replication$ conda env create --file env.yaml
      #+end_src 
