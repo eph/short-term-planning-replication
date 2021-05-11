@@ -150,7 +150,8 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
      #+end_src      
   7. /(Optional, only to estimate the models.)/ Estimate all the (full sample) models with: 
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/estimate-all-models.sh
+       (short-term-planning-replication) user@computer:short-term-planning-replication$ chmod +x batch/estimate-all-models.sh # ensure script is executable
+       (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/estimate-all-models.sh
      #+end_src      
      /Note/: this can take quite a long time! To estimate an
      individual model, use ~scripts/03-estimate-baseline-models.py~
@@ -173,12 +174,14 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
 
   8. /(Optional, only to estimate time posteriors.)/ Estimate all the time posteriors of CNK and FHP models with: 
      #+begin_src sh
-     (short-term-planning-replication) user@computer:short-term-planning-replication$ ./scripts/04-estimate-time-posteriors.sh
+       (short-term-planning-replication) user@computer:short-term-planning-replication$ chmod +x scripts/04-estimate-time-posteriors.sh # ensure script is executable
+       (short-term-planning-replication) user@computer:short-term-planning-replication$ ./scripts/04-estimate-time-posteriors.sh
      #+end_src      
      /Note/: this can take quite a long time! 
 
   9. Construct the tables and figures.
      #+begin_src sh
+     (short-term-planning-replication) user@computer:short-term-planning-replication$ chmod +x batch/create-all-figures-and-tables.sh # ensure script is executable
      (short-term-planning-replication) user@computer:short-term-planning-replication$ ./batch/create-all-figures-and-tables.sh
      #+end_src           
      /Note/: See the details below to for how to create individual tables and figures.  
