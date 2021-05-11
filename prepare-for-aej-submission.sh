@@ -1,14 +1,17 @@
 #!/bin/bash
-rm -f short-term-planning-replication.zip
+NAME=short-term-planning-replication
+rm -f $NAME.zip
 rm -f README.md
 pandoc --to=markdown README.org >> README.md
-zip -r short-term-planning-replication.zip README.md env.yaml single_agent_template.f90
-zip short-term-planning-replication.zip scripts/* -x scripts/__pycache__/
-zip short-term-planning-replication.zip scripts/* -x scripts/__pycache__/
-zip short-term-planning-replication.zip figures-tables/
-zip short-term-planning-replication.zip batch/*
-zip short-term-planning-replication.zip data/*
-zip -r short-term-planning-replication.zip models/*
-zip -r short-term-planning-replication.zip fortran/*/output*
-zip short-term-planning-replication.zip fortran/canonical_NK/time-posteriors/*
-zip short-term-planning-replication.zip fortran/finite_horizon_phibar/time-posteriors/*
+cd ../
+zip -r $NAME/$NAME.zip $NAME/README.md $NAME/env.yaml $NAME/single_agent_template.f90
+zip $NAME/$NAME.zip $NAME/scripts/* -x $NAME/scripts/__pycache__/
+zip $NAME/$NAME.zip $NAME/scripts/* -x $NAME/scripts/__pycache__/
+zip $NAME/$NAME.zip $NAME/figures-tables/
+zip $NAME/$NAME.zip $NAME/batch/*
+zip $NAME/$NAME.zip $NAME/data/*
+zip -r $NAME/$NAME.zip $NAME/models/*
+zip -r $NAME/$NAME.zip $NAME/fortran/*/output*
+zip $NAME/$NAME.zip $NAME/fortran/canonical_NK/time-posteriors/*
+zip $NAME/$NAME.zip $NAME/fortran/finite_horizon_phibar/time-posteriors/*
+cd $NAME
