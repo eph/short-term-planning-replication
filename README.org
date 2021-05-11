@@ -69,7 +69,8 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
 
 - Linux-based operating system. 
 - Conda package and environment management system with python 3.6 or higher.
-  - The file ~env.yaml~ contains the details of the python3+mpif90 environment to run all of the code.  See /Instructions to Replicators/ step 2 to install this environment. 
+  - The file ~env.yaml~ contains the details of the python3+mpif90 environment to run all of the code.  See /Instructions to Replicators/ step 2 to install this environment.  The code was
+        executed using ~gcc~ version 7.3.0 and ~MPICH~ version 3.3. 
 - A valid TeX installation. 
 
 *** Memory and Runtime Requirements
