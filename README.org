@@ -44,6 +44,40 @@ constructs the figures and tables from Gust, Herbst, and Lopez-Salido
        of the Federal Reserve System.  The data can be obtained 
        [[https://www.federalreserve.gov/econres/us-models-package.htm][here]].  The variable name is ~PTR~. 
 
+***** Analysis Data Files (Created)
+      The replication material also contains a number of "data" files
+      containing the draws from various model posteriors.  They are
+      named following the convention:
+      #+begin_src
+      short-term-planning-replication/fortran/${MODEL}/output-{01,...,10}.json
+      #+end_src
+      The values for ~MODEL~ are as follows:
+      |----------------------------------------|
+      | ~MODEL~                                |
+      |----------------------------------------|
+      | ~canonical_NK~                         |
+      | ~trends~                               |
+      | ~finite_horizon~                       |
+      | ~finite_horizon_gamma~                 |
+      | ~finite_horizon_phibar~                |
+      | ~angeletos_lian~                       |
+      | ~habits~                               |
+      | ~habits_lampifinite_horizon_phibar_k0~ |
+      | ~finite_horizon_phibar_k1~             |
+      | ~finite_horizon_phibar_k2~             |
+      | ~finite_horizon_phibar_k3~             |
+      | ~finite_horizon_phibar_k4~             |
+      |----------------------------------------|
+      Each model has 10 output files, indexed by an integer,
+      corresponding to an independent run of the Sequential Monte
+      Carlo algorithm.
+
+      Additionally, the data files for the "time-tempered" posterior are given by:
+      
+      #+begin_src
+      short-term-planning-replication/fortran/{canonical_NK,finite_horizon_phibar}/time-posteriors/output-${T}.json
+      #+end_src
+      where $T is an integer corresponding to the end of each sample (T=1,...,168). 
 *** Statement about Rights
 
     We certify that we have legitimate access to and permission to use
